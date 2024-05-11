@@ -29,7 +29,26 @@ export const typeDefs = `#graphql
   # clients can execute, along with the return type for each. 
   type Query {
     games: [Game]
+    game(id: ID!): Game
     reviews: [Review]
+    review(id: ID!): Review
     authors: [Author]
+    author(id: ID!): Author
+  }
+
+  type Mutation {
+    addGame(newGame: AddGameInput!): Game
+    deleteGame(id: ID!): [Game]
+    updateGame(id: ID!, edits: EditGameInput!): Game
+  }
+
+  input AddGameInput {
+    title: String!
+    platform: [String!]!
+  }
+
+  input EditGameInput {
+    title: String
+    platform: [String!]
   }
 `;
